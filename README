@@ -1,4 +1,21 @@
-This repository is used to store code I use for training users.
+Purpose:
+Would like to get a list of the last time users have logged into a machine.
 
-Projects will be seperate branches in this repo.
-No code will be stored in the master branch.
+
+Install Notes:
+
+
+Copy over _modules and _states to the root of your filesystem.
+
+If you have the defaults in place this would be
+
+/srv/salt/_modules
+/srv/salt/_states
+
+
+If you are using gitfs
+
+branchname/_modules
+branchname/_states
+
+
