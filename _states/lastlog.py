@@ -39,21 +39,19 @@ def cleanup_users(name, olderthan=90):
 
     changes = []
 
-    userlogins = __salt__['lastlog.last_login']
+    userlogins = __salt__['lastlog.last_login']()
 
-    timeformat = '%a %b %d %H:%M:%S %z %Y'
-    present = datetime.now
+    timeformat = '%a %b %d %H:%M:%S +0000 %Y'
+    present = datetime.now()
 
     for user in userlogins:
         username = user[0]
         lastlogin = user[1]
 
-        flastlogin = datetime.datetime.strptime(lastlogin, timeformat)
+        flastlogin = datetime.strptime(lastlogin, timeformat)
         deltatime = present - flastlogin
 
-        days = deltatime.timedelta().days()
-
-        if days > olderthan:
+        if days < deltatime.days:
             # remove user
             changes.append(username)
 
