@@ -51,7 +51,7 @@ def cleanup_users(name, olderthan=90):
         flastlogin = datetime.strptime(lastlogin, timeformat)
         deltatime = present - flastlogin
 
-        if days < deltatime.days:
+        if olderthan < deltatime.days:
             # remove user
             changes.append(username)
 
