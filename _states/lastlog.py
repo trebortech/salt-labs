@@ -53,7 +53,7 @@ def cleanup_users(name, olderthan=90):
 
         if olderthan < deltatime.days:
             # remove user
-            changes.append(username)
+            changes.append("Remove user" + username)
 
     ret['changes'] = changes
 
