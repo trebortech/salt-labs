@@ -8,10 +8,11 @@ Last login of users
 
 
 '''
+from __future__ import absolute_import
 
 # Import base libs
 import logging
-from __future__ import absolute_import
+
 
 # Impoort salt libs
 from salt import utils
@@ -38,6 +39,23 @@ def __virtual__():
 def never_logged_in():
 
     cmd = "lastlog | grep Never | awk '{print $1}'"
-    users = __salt__['cmd.run'](cmd)
+    users = __salt__['cmd.shell'](cmd)
 
-    return users 
+    return users
+
+def last_login():
+
+    cmd = "lastlog | grep -v Never"
+    users = __salt__['cmd.shell'](cmd)
+
+    userlist = users.split('\n')
+
+    logins = []
+    for user in userlist:
+        username = user[0:18].strip()
+        date = user[43:].strip()
+
+        if username not 'username':
+            logins.append(username + " last login " + date)
+
+    return logins
