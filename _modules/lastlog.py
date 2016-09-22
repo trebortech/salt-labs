@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Last login of users
 
@@ -55,7 +56,7 @@ def last_login():
         username = user[0:18].strip()
         date = user[43:].strip()
 
-        if username not 'username':
-            logins.append(username + " last login " + date)
+        if username != 'Username':
+            logins.append([username ,date])
 
     return logins
